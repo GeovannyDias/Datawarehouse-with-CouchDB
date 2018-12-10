@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Entretenimiento_3_Data.gov</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+
+    <script src="../js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  
+    <script src="https://www.google.com/jsapi"></script>
+
+    
+    <script>
+
+        var public_key = 'dZ4EVmE8yGCRGx5XRX1W';
+
+        var jsonData = $.ajax({
+          url: 'http://localhost:5984/entretenimiento_3/_all_docs/?limit=50&include_docs=true', //cambiar la DB
+          //url: 'http://127.0.0.1:5984/test/_all_docs?include_docs=true&conflicts=true',
+          data: {page: 1},
+          dataType: 'json',
+        }).done(function (results) {
+
+
+       var count=results.total_rows;
+            console.log(count);
+         
+
+          for(var i=0;i<count; i++){
+              console.log("ingresa");
+              console.log(results.rows[i]);
+              
+              
+              var location = results.rows[i].doc.Department;
+              var num_hogares = results.rows[i].doc.Account_Platform;
+              var porc_house_pets = results.rows[i].doc.Account_Name;
+              var porc_dog = results.rows[i].doc.Account_Link;
+              //var dog_population = results.rows[i].doc.animal_type;
+              //var porc_cat = results.rows[i].doc.Age;
+              //var cat_population = results.rows[i].doc.Animal_Breed;
+              
+
+      console.log(location);
+      //console.log(texttweet);
+      
+      document.getElementById("tweet").innerHTML += "<tr>"+
+                                                       
+                                                        "<td>"+location+"</td>"+
+                                                        "<td>"+num_hogares+"</td>"+
+                                                        "<td>"+porc_house_pets+"</td>"+
+                                                        "<td>"+porc_dog+"</td>"+
+                                                        //"<td>"+dog_population+"</td>"+
+                                                        //"<td>"+porc_cat+"</td>"+
+                                                        //"<td>"+cat_population+"</td>"+                                                        
+                                                    "</tr>";      
+        }
+      });
+
+    </script>
+
+  </head>
+  <body>
+      <h1 style="text-align: center">Entretenimiento - Fuente Data.gov (3)</h1>
+    
+    
+
+<div class="container">
+<table class="table table-bordered" > 
+<thead>
+      <tr>
+        
+        <th>Department</th>
+        <th>Account_Platform</th>
+        <th>Account_Name</th>
+        <th>Account_Link</th>
+        
+          
+      </tr>
+    <tbody id="tweet">  
+    </tbody>
+  </table>
+</div>
+
+  </body>
+</html>

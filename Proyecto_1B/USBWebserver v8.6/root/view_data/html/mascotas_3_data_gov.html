@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Mascotas_3_Data.gov</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+
+    <script src="../js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  
+    <script src="https://www.google.com/jsapi"></script>
+
+    
+    <script>
+
+        var public_key = 'dZ4EVmE8yGCRGx5XRX1W';
+
+        var jsonData = $.ajax({
+          url: 'http://localhost:5984/mascotas_3/_all_docs/?limit=50&include_docs=true', //cambiar la DB
+          //url: 'http://127.0.0.1:5984/test/_all_docs?include_docs=true&conflicts=true',
+          data: {page: 1},
+          dataType: 'json',
+        }).done(function (results) {
+
+
+       var count=results.total_rows;
+            console.log(count);
+         
+
+          for(var i=0;i<count; i++){
+              console.log("ingresa");
+              console.log(results.rows[i]);
+              
+              var imagen = results.rows[i].doc.Image;
+              var location = results.rows[i].doc.Animal_ID;
+              var num_hogares = results.rows[i].doc.Data_Source;
+              var porc_house_pets = results.rows[i].doc.Record_Type;
+              var porc_dog = results.rows[i].doc.Animal_Name;
+              var dog_population = results.rows[i].doc.animal_type;
+              var porc_cat = results.rows[i].doc.Age;
+              var cat_population = results.rows[i].doc.Animal_Breed;
+              
+
+      console.log(location);
+      //console.log(texttweet);
+      
+      document.getElementById("tweet").innerHTML += "<tr>"+
+                                                        "<td><img src="+imagen+" width='80px' height='80px'></td>"+
+                                                        "<td>"+location+"</td>"+
+                                                        "<td>"+num_hogares+"</td>"+
+                                                        "<td>"+porc_house_pets+"</td>"+
+                                                        "<td>"+porc_dog+"</td>"+
+                                                        "<td>"+dog_population+"</td>"+
+                                                        "<td>"+porc_cat+"</td>"+
+                                                        "<td>"+cat_population+"</td>"+                                                        
+                                                    "</tr>";      
+        }
+      });
+
+    </script>
+
+  </head>
+  <body>
+      <h1 style="text-align: center">Mascotas - Fuente Data.gov (3)</h1>
+    
+    
+
+<div class="container">
+<table class="table table-bordered" > 
+<thead>
+      <tr>
+        <th>Imagen</th>
+        <th>Animal_ID</th>
+        <th>Data_Source</th>
+        <th>Record_Type</th>
+        <th>Animal_Name</th>
+        <th>animal_type</th>
+        <th>Age</th>
+        <th>Animal_Breed</th>        
+          
+      </tr>
+    <tbody id="tweet">  
+    </tbody>
+  </table>
+</div>
+
+  </body>
+</html>

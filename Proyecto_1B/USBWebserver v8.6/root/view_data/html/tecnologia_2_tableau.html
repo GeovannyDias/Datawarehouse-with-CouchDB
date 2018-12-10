@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Tecnologia_2_Tableau</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+
+    <script src="../js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  
+    <script src="https://www.google.com/jsapi"></script>
+
+    
+    <script>
+
+        var public_key = 'dZ4EVmE8yGCRGx5XRX1W';
+
+        var jsonData = $.ajax({
+          url: 'http://localhost:5984/tecnologia_2/_all_docs/?limit=50&include_docs=true', //cambiar la DB
+          //url: 'http://127.0.0.1:5984/test/_all_docs?include_docs=true&conflicts=true',
+          data: {page: 1},
+          dataType: 'json',
+        }).done(function (results) {
+
+
+       var count=results.total_rows;
+            console.log(count);
+         
+
+          for(var i=0;i<count; i++){
+              console.log("ingresa");
+              console.log(results.rows[i]);
+              
+              var location = results.rows[i].doc.Date;
+              var num_hogares = results.rows[i].doc.Mobile_Operating_System;
+              var porc_house_pets = results.rows[i].doc.Percent_of_Usage;
+              //var porc_dog = results.rows[i].doc.Percentage_of_Dog_Owners;
+              //var dog_population = results.rows[i].doc.Dog_Population_in_1000_;
+              //var porc_cat = results.rows[i].doc.Percentage_of_Cat_Owners;
+              //var cat_population = results.rows[i].doc.Cat_Population;
+              
+
+      console.log(location);
+      //console.log(texttweet);
+      
+      document.getElementById("tweet").innerHTML += "<tr>"+
+                                                        "<td>"+location+"</td>"+
+                                                        "<td>"+num_hogares+"</td>"+
+                                                        "<td>"+porc_house_pets+"</td>"+
+                                                        //"<td>"+porc_dog+"</td>"+
+                                                        //"<td>"+dog_population+"</td>"+
+                                                        //"<td>"+porc_cat+"</td>"+
+                                                        //"<td>"+cat_population+"</td>"+                                                        
+                                                    "</tr>";      
+        }
+      });
+
+    </script>
+
+  </head>
+  <body>
+      <h1 style="text-align: center">Tecnologia - Fuente Tableau Public (2)</h1>
+    
+    
+
+<div class="container">
+<table class="table table-bordered" > 
+<thead>
+      <tr>
+        <th>Date</th>
+        <th>Mobile_Operating_System</th>
+        <th>Percent_of_Usage</th>
+        
+          
+      </tr>
+    <tbody id="tweet">  
+    </tbody>
+  </table>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,87 @@
+<!--CURSO AVANZADO HTML5-->
+<!--https://www.youtube.com/playlist?list=PLB84EDBCAECEF07AA-->
+<!--==============================================================================-->
+<!--https://fonts.google.com/-->
+<!--http://validator.w3.org/-->
+<!--==============================================================================-->
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <title>Geo - EPN</title>
+        <link rel="stylesheet" href="interface/stylesheet1.css" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+        <!--descargar el archivo para que fncione canvas-->
+        <script src="interface/jquery-1.7.1.min.js"></script>
+        <script src="interface/canvas1.js"></script>
+    </head>
+    
+    <body>
+        <!--div: son agrupaciones // define un espacio en la pagian para aplicar estilos css-->
+        <div id="contenido">
+            <!--encabezado-->
+            <header>
+                <hgroup>
+                    <h1>ESCUELA POLITÉCNICA NACIONAL</h1>
+                    <h1>DATAWAREHOUSE</h1>
+                </hgroup>
+                
+                <!--nav: botonera de navegación-->
+                <nav>
+                    <ul>
+                        
+                        <li><a href='index.html'>Mascotas</a></li>
+                        <li><a href='interface/index_entretenimiento.html'>Entretenimiento</a></li>
+                        <li><a href='interface/index_tecnologia.html'>Tecnología</a></li>
+                        <!--<li>Media</li>-->
+                    </ul>
+                </nav>
+            </header>
+            
+            <!--section: seccion nueva en la pagina-->
+            <section>
+                <div id="textoPr">
+                    <!--article: centro o el articulo que queremos que lea el usuario-->
+                    <article>
+                        <hgroup>
+                            <h1 style="text-align: center">MASCOTAS</h1>
+                            <h1>SELECCIONE FUENTE:</h1>
+                        </hgroup>
+                        
+                        <form action="php/validador.php" method="post">
+                            <select name="dataset" id="dataset1">
+                                <option value="" ></option>
+                                <option value="twitter">Twitter</option>
+                                <option value="tableau">Tableau Public</option>
+                                <option value="data">Data.gov</option>
+                            </select>
+                            <!--<input type="text" name=""/>-->
+                            <input type="submit" value="Seleccionar" id="boton"/>
+                        </form>
+                        <p>
+                            La información obtenida proviene de fuentes de uso público y será utilizado para fines educativos.
+                        </p>
+                    </article>
+                    
+                     <!--aside: informacion adicional - sidebar: incluye las redes sociales-->
+                    <aside>
+<!--                        <br>-->
+                        <p>copyright © 2018 All Rights Reserved</p>
+                        <p><a href="">____ESFOT-ASI____</a> </p>
+                    </aside>
+                            
+                </div>
+            </section>
+            
+        </div>
+        
+        <footer>
+            
+            <canvas id="miCanvas">
+                la pagina no soporta este parámetro
+            </canvas>
+        </footer>
+        
+        
+    </body>
+</html>
